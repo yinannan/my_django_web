@@ -1,1 +1,2 @@
-print'hellow world'
+这是一个自主学习项目
+
