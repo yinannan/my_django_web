@@ -1,0 +1,11 @@
+{% extends "myadmin/base.html" %}
+
+{% block indexbody %}
+<center>
+<br><br><br><br><br><br><br><hr>
+	<h3>
+		{{ info }}
+	</h3>
+	<a href="{% url 'goodssee' 1 %}">返回商品浏览首页</a>
+</center>
+{% endblock %}

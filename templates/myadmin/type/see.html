@@ -1,0 +1,40 @@
+{% extends "myadmin/base.html" %}
+{ % load static from staticfiles %}
+
+{% block css %}
+{% endblock %}
+
+{% block indexbody %}
+	<h3>
+		商品类别浏览
+	</h3>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>类别id</th>
+				<th>类别名称</th> 
+				<th>父类别id</th>
+				<th>路径</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for type in typelist %}
+			<tr>
+				<td>{{ type.id }}</td>
+				<td>{{ type.pname }}--{{ type.name }}</td>
+				<td>{{ type.pid }}</td>
+				<td>{{ type.path }}</td>
+				<td>
+					<a href="{% url 'typeadd' type.id %}">添加子类别</a>
+					<a href="{% url 'typeedit' type.id %}">编辑</a>
+					<a href="{% url 'typedel' type.id %}">删除</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
+
+
+

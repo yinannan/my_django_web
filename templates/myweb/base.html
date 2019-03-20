@@ -1,0 +1,151 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>锤子科技官网</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="{% static 'myweb/css/bootstrap.min.css' %}" rel="stylesheet">
+	<script src="{% static 'myweb/js/jquery-1.12.4.min.js' %}"></script>
+	<script src="{% static 'myweb/js/bootstrap.min.js' %}"></script>
+{%block link%}
+{%endblock%}
+</head>
+<body>
+	<!-- 顶端导航 -->
+	<nav class="navbar navbar-default navbar-inverse " style="margin-bottom:0;">
+	  	<div class="container-fluid " >
+		    <div class="navbar-header " >
+			    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			    </button>
+		      	<a class="navbar-brand hidden-xs" href="{% url 'webIndex' %}">
+		      		<img src=" {% static 'myweb/img/logo.png' %}" alt="" style="margin-top:13px;border-radius:50%;">
+		      	</a>
+		      	<a class="navbar-brand visible-md visible-xs" href="#">
+		      		<img src="{% static 'myweb/img/logo.png' %}" alt="" style="position: relative;height: 130%;border-radius:50%;margin-left: -130px;">
+		      	</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="line-hight:50px;">
+			    <ul class="nav navbar-nav navbar">
+			        <li  style="margin-bottom:15px;padding:10px 0"><a href="{% url 'weblist' %}"  ><p class="navbar-text">在线商城</p></a></li>
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"  ><p class="navbar-text" >坚果Pro</p></a></li>
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"   ><p class="navbar-text">Smartisan M1/M1L</p></a></li> 
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"  ><p class="navbar-text">Smartisan OS</p></a></li>
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"  ><p class="navbar-text">欢喜云</p></a></li>weblist
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"  ><p class="navbar-text">应用下载</p></a></li>
+			        <li style="margin-bottom:15px;padding:10px 0;"><a href="{% url 'weblist' %}"  ><p class="navbar-text">官方论坛</p></a></li>
+			    </ul>
+			    <ul class="nav navbar-nav navbar-right navbar-text hidden-xs" >
+			        <li style="padding-left: 0;margin-left: 0">
+			        	<a href="{% url 'weblogin' %}"  class="glyphicon glyphicon-user navbar-text">{{ request.session.user.username }}
+			        	</a>
+			        	<a href="{% url 'webzhuce' %}"  class="glyphicon glyphicon-plus-sign navbar-text"></a>
+			        	<a href="{% url 'weblogout' %}" class="glyphicon glyphicon-remove navbar-text"></a>
+			        </li>
+			        <li>
+				        <a href="{% url 'webbaseche' %}" class="glyphicon glyphicon-shopping-cart navbar-text" style="margin-left: 0;">
+				        	<span class="ling">{{ request.session.buy|length }}</span>
+				        </a>
+			        </li>
+			    </ul>
+		    </div>
+	  	</div>
+	</nav>
+	<!--end  导航 -->
+{%block neirong%}
+{%endblock%}
+	<!-- 尾 -->
+	<footer class="footer " style="background: #fff;">
+	    <div class="container">
+		    <div class="row footer-top" style="margin: 0;padding: 0;">
+		      	<div class="row"><br><br><br>
+			        <div class="col-sm-6  col-md-8">
+	          			<div class="row f" >
+				            <div class="col-md-2  col-xs-4 ">
+					            <h5>订单服务</h5>
+					            <ul class="list-unstyled">
+					                <li><a href="">购买指南</a></li>
+					                <li><a href="">支付方式</a></li>
+					                <li><a href="">送货政策</a></li>
+					            </ul>
+							</div>
+				            <div class="col-md-2  col-xs-4 ">
+				              	<h5>服务支持</h5>
+					            <ul class="list-unstyled">
+					                <li><a href="" title="">售后服务</a></li>
+					                <li><a href="">维修门店</a></li>
+					                <li><a href="">零售门店</a></li>
+					            </ul>
+				            </div>
+				            <div class="col-md-2  col-xs-4 ">
+					            <h5>自助服务</h5>
+					            <ul class="list-unstyled">
+						            <li><a href="" >热点咨询</a></li>
+						            <li><a href="" >预约购买</a></li>
+						            <li><a href="" >订单物流</a></li>
+					            </ul>
+				            </div>
+				            <div class="col-md-2  col-xs-4 ">
+				             	<h5>媒体中心</h5>
+					            <ul class="list-unstyled">
+						            <li><a href="" >新闻动态</a></li>
+					                <li><a href="" >官方视频</a></li>
+					                <li><a href="" >图片资源</a></li>
+					            </ul>
+				            </div>
+				            <div class="col-md-2  col-xs-4 ">
+				              	<h5>关于公司</h5>
+					            <ul class="list-unstyled">
+					                <li><a href="" title="" >公司简介</a></li>
+					                <li><a href="">加入我们</a></li>
+					                <li><a href="">练习我们</a></li>
+					            </ul>
+				            </div>
+				            <div class="col-md-2 col-xs-4 ">
+				              	<h5>关注我们</h5>
+					            <ul class="list-unstyled">
+					                <li><a href="" title="" >新浪微博</a></li>
+					                <li><a href="">官方微信</a></li>
+					                <li><a href="">官方贴吧</a></li>
+					            </ul>
+				            </div>
+	          			</div>
+			        </div>
+			        <div class="col-sm-6 col-md-3 col-md-offset-2"><br class="visible-md">
+			          	<h4>
+			            	<h2 style="margin: 0;">400-619-0909</h2>
+			            	<h6>周一至周日 9:00-18:00（仅收市话费）</h6>
+			            	<button type="button" class="btn btn-default ">
+				  				<span class="glyphicon glyphicon glyphicon-question-sign"></span>在线帮助
+							</button>
+			          	</h4>
+			        </div>
+				</div>
+	     	</div>
+	      	<hr>
+	      	<div class="row footer-bottom">
+		        <ul class="list-inline text-center">
+		        	<li>
+		        		<a href="">
+		        			<h6 style="color:#757575;">Copyright © 2017, Smartisan Digital Co., Ltd. All Rights Reserved.北京锤子数码科技有限公司法律声明 隐私条款 开发者中心</h6>
+		        		</a>
+		        	</li>
+					<p>
+			          	<li><h6>京ICP备14041720号-1</h6></li>
+			          	<li><h6>京ICP证140622号</h6></li>
+			          	<li><h6>京公网安备11010502025474</h6></li>
+					</p>
+		        </ul>
+	      	</div>
+	    </div>
+	<!--end尾 -->
+	</footer>
+</body>
+{%block js%}
+{%endblock%}
+</html>

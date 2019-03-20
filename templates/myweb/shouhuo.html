@@ -1,0 +1,24 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czlist.css' %}">
+{%endblock%}
+
+{%block js%}
+	<script type="text/javascript" src="{% static 'myweb/js/czlist.js' %}"></script>
+{%endblock%}
+
+
+{%block neirong%}
+<center><br><br>
+	<div class="container panel-body" style="text-align: center;background: #fff;">
+		<br><br><h1 style="font-size: 50px;">{{ info }}</h1><br><hr><br>
+	<a href="{% url 'webmyself' %}" style="text-decoration-line: none;"><button class="btn btn-primary btn-lg" style="margin-left: 600px;">返回个人中心</button></a><br><br></div><br><br>
+</center>
+{%endblock%} 
+
+
+
+	
+

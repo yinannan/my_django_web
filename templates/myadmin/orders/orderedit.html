@@ -1,0 +1,91 @@
+{% extends "myadmin/base.html" %}
+{% load static from staticfiles %}
+{% block indexbody %}
+
+{% block dojs %}
+	<script src="{% static 'myadmin/js/edit.js' %}"></script>
+{% endblock %}
+	<h3>
+		编辑订单状态
+	</h3>
+	<form action="{% url 'orderdoedit' %}" id="edit-profile" class="form-horizontal" method="post">
+	{% csrf_token %}
+		<fieldset>
+			<legend>编辑订单状态</legend>
+			<div class="control-group controls">
+				<input type="hidden" class="input-xlarge" id="input01" value="{{ ob.id }}" name="id" />
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >会员id</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.uid }}" name="uid" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >联系人</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.linkman }}" name="linkman" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >地址</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.adress }}" name="adress" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >邮编</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.code }}" name="code" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >电话</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.phone }}" name="phone" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >购买时间</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.addtime }}" name="addtime" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01" >总金额</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="{{ ob.total }}" name="total" readonly />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">状态</label>
+				<div class="controls">
+					新订单&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="0" name="status" 
+					{% if ob.status == 0 %}
+					checked
+					{% endif %} 
+					 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					已发货&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="1" name="status" 
+					{% if ob.status == 1 %}
+					checked
+					{% endif %} 
+					/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					已收货&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="2" name="status" 
+					{% if ob.status == 2 %}
+					checked
+					{% endif %} 
+					 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 无效订单&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="3" name="status" 
+					{% if ob.status == 3 %}
+					checked
+					{% endif %} 
+					 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div>
+			</div><hr>
+			<div>
+				<button type="submit" class="btn btn-primary" style="margin-left: 250px">修改</button> 
+				<button type="reset" class="btn">重置</button>
+			</div>
+		</fieldset>
+	</form>
+{% endblock%}

@@ -1,0 +1,117 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+{%endblock%}
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+<br>
+<div class="container" >
+	<h2 style="color: #696B69;" class="glyphicon glyphicon-user"><strong>个人中心</strong></h2><hr>
+	<div class="row" s>
+		<div class="panel panel-default">
+		    <div class="panel-heading gouwu" style="padding-left: 70px;">
+		    	<h4>会员信息</h4>
+		    </div>
+		  	<div class="panel-body row tupian" tyle="text-align: center">
+				<div class="row ">
+					<div class="col-md-2 col-xs-4" style="padding-left: 50px;padding: 0;text-align: center;">姓名</div>
+					<div class="col-md-1 col-xs-2" style="text-align: center">性别</div>
+					<div class="col-md-3 col-xs-2" style="text-align: center">收货地址</div>
+					<div class="col-md-2 col-xs-2" style="text-align: center">电话</div>
+					<div class="col-md-2 col-xs-2" style="text-align: center">邮编</div>
+					<div class="col-md-2 col-xs-2" style="text-align: center">操作</div>
+				</div><hr>
+				<div class="row " style="margin-top: 20px;text-align: center;padding-bottom: 0">
+					<!-- 姓名 -->
+					<div class="col-md-2 col-xs-2 caozuo" style="padding-left: 0;">
+						<input type="hidden" value="{{myusers.id}}" name="id">
+						<span class="manage-address"><input type="text"  value="{{myusers.username}}" style="border: none;text-align: center;padding-left: 0" readonly /></span>
+					</div>
+					<!-- 性别 -->
+					<div class="col-md-1 col-xs-2 caozuo" >
+						 <span class="manage-address"><input type="text"   value="{% if myusers.sex == 0 %}男{% else %}女{% endif %}" readonly style="border: none;text-align:center;width: 20px;"/></span>
+					</div>
+					<!-- 地址 -->
+					<div class="col-md-3 col-xs-6 caozuo" style="text-align: center;padding: 0;">
+						 <span class="manage-address"><input type="text" readonly  value="{{myusers.adress}}" style="border: none;text-align:center;width: 300px;"/></span>
+					</div>
+					<!-- 电话 -->
+					<div class="col-md-2 col-xs-6 caozuo" style="text-align: center;">
+						 <span class="manage-address"><input type="text" readonly  value="{{myusers.phone}}" style="border: none;text-align:center;"/></span>
+					</div>
+					<!-- 邮编 -->
+					<div class="col-md-2 col-xs-2 caozuo" >
+						<span class="manage-address"><input type="text" readonly value="{{ myusers.code }}" style="border: none;text-align: center;"/></span>
+					</div>
+					<div class="col-md-2 col-xs-2 caozuo" style="padding-left: 50px;">
+						<a href="{% url 'webmyselfedit' myusers.id %}"><button class="btn btn-info btn-sm" >编辑</button></a>
+						<a href="{% url 'webmyselfeditpass' myusers.id %}"><button class="btn btn-danger btn-sm" >密码</button></a>
+					</div>
+				</div>
+		  	</div>
+		</div><br><br>
+		<div class="panel panel-default">
+		    <div class="panel-heading gouwu" style="padding-left: 70px;">
+		    	<h4>历史订单</h4>
+		    </div>
+		  	<div class="panel-body row tupian" tyle="text-align: center">
+				<div class="row ">
+					<div class="col-md-2 col-xs-4" style="padding-left: 60px;">会员号</div>
+					<div class="col-md-1 col-xs-2" style="text-align: center">会员姓名</div>
+					<div class="col-md-3 col-xs-2" style="text-align: center">收货地址</div>
+					<div class="col-md-2 col-xs-2" style="text-align: center">购买时间</div>
+					<div class="col-md-2 col-xs-2" style="text-align: center">金额</div>
+					<div class="col-md-1 col-xs-2" style="text-align: center">详情</div>
+				</div><hr>
+				{% for my in list %}
+				<div class="row " style="margin-top: 20px;text-align: center;padding-bottom: 0;font-size: 15px;">
+					<!-- id-->
+					<div class="col-md-2 col-xs-2 caozuo" style="padding-left: 0;">
+					<input type="hidden" value="{{my.id}}" name="id">
+						<span class="manage-address"><input type="text" name="adress" value="{{my.uid}}" style="border: none;text-align: center;width: 30px;padding-left: -40px;" readonly /></span>
+					</div>
+					<!-- 名称 -->
+					<div class="col-md-1 col-xs-2 caozuo" >
+						 <span class="manage-address"><input type="text" readonly  value="{{my.linkman}}" style="border: none;text-align:center;width: 60px;"/></span>
+					</div>
+					<!-- 地址 -->
+					<div class="col-md-3 col-xs-6 caozuo" style="text-align: center;">
+						 <span class="manage-address"><input type="text" readonly  value="{{my.adress}}" style="border: none;text-align:center;"/></span>
+					</div>
+					<!-- 添加时间 -->
+					<div class="col-md-2 col-xs-6 caozuo" style="text-align: center;">
+						 <span class="manage-address"><input type="text" readonly  value="{{my.addtime}}" style="border: none;text-align:center;"/></span>
+					</div>
+					<!-- 总计 -->
+					<div class="col-md-2 col-xs-2 caozuo" >
+						<span class="manage-address"><input type="text" readonly value="{{ my.total}}" style="border: none;text-align: center;"/></span>
+					</div>
+					<div class="col-md-2 col-xs-2 caozuo" style="padding-left:20px;">
+						<a href="{% url 'webmyselfdetail' my.id %}"><button class="btn btn-default btn-sm">查看详情</button></a>
+					</div>
+				</div>
+				{% endfor %}	
+		  	</div>
+		</div>
+	  	<div class="panel-footer">
+			<div class="row "><br>
+				<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" >
+					<a href="{% url 'webIndex' %}">
+					<button  type="submit" class="btn btn-info" style="margin-top:-7px;margin-left:80px">返回首页</button></a>
+				</div>
+			</div>
+	  	</div>
+	</div><br><br><br><br>
+</div>
+{%endblock%}
+
+
+
+	
+

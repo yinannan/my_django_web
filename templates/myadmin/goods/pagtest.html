@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<ul>
+{%for area in list%}
+<li>{{area.id}}--{{area.atitle}}</li>
+{%endfor%}
+</ul>
+
+{%for pindex in plist%}
+{%if pIndex == pindex%}
+{{pindex}}&nbsp;&nbsp;
+{%else%}
+<a href="/pag{{pindex}}/">{{pindex}}</a>&nbsp;&nbsp;
+{%endif%}
+{%endfor%}
+</body>
+</html>

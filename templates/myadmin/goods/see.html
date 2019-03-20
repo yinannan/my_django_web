@@ -1,0 +1,66 @@
+{% extends "myadmin/base.html" %}
+{ % load static from staticfiles %}
+
+{% block css %}
+{% endblock %}
+
+{% block indexbody %}
+	<h3>
+		商品信息浏览
+	</h3>
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>类别id</th>
+				<th>类别名称</th>
+				<th width="12%">商品名称</th> 
+				<th >商品图片</th>
+				<th>单价</th>
+				<th width="8%">状态</th>
+				<th width="5%">库存</th>
+				<th width="7%">购买量</th>
+				<th width="7%">点击量</th>
+				<th>添加时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for goods in list2 %}
+			<tr >
+				<td>{{ goods.typeid }}</td>
+				<td>{{ goods.typename }}</td>
+				<td>{{ goods.goods }}</td>
+				<td><img src="/static/goods/m_{{ goods.picname }}" width="60" ></td>
+				<td>{{ goods.price }}</td>
+				<td> 
+				{% if goods.state == 1 %}
+				新添加
+				{% elif goods.state == 2 %}
+				在售
+				{% else %}
+				下架
+				{% endif %}
+				 </td>
+				<td>{{ goods.store }}</td>
+				<td>{{ goods.num }}</td>
+				<td>{{ goods.clicknum }}</td>
+				<td>{{ goods.addtime }}</td>
+				<td>
+					<a href="{% url 'goodsedit' goods.id %}">编辑</a>
+					<a href="{% url 'goodsdel' goods.id %}">删除</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<div class="pagination">		
+		<ul>
+		{% for pindex in plist %}
+		    <li><a href="{% url 'goodssee' pindex %}">{{ pindex }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		{% endfor %}
+		</ul>
+	</div>	
+{% endblock %}
+
+
+

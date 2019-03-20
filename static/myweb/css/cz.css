@@ -1,0 +1,38 @@
+body{background: #EDEDED;margin: 0;padding: 0;}
+.divv {padding: 31px 0;}
+.ull{list-style: none;height: 28px;padding-left: 0;}
+.ull li{padding-left: 20px;}
+.ull a{padding-right: 20px;color: #666666;}
+.ull a:hover{color: #337AB7;}
+.navbar-text{font-size:15px;color: #C8C8C8;margin-bottom: 15px;font-weight: 400;}
+.navbar-text:hover{color: #fafafa;}
+.navbar-brand{padding-left: 150px;}
+.goods-list div {padding: 0;}
+.goods-list  {padding: 0;}
+.remen .navbar-text{font-size: 18px;color: #666666}
+.container div{margin: 0;}
+.shangpin div{padding: 0;}
+.shangpin{padding-right: 0;}
+.a div{padding: 0;}
+.remen .b{height: 100%;;padding:20px 0;}
+.c div{padding: 0;}
+.e img{padding: 25px;}
+a{text-decoration: none}
+.f a{color: #969696;}
+.te a{text-decoration: none;text-align: center;}
+.te h6{color: #424242;text-align: center;}
+.te h5{color: #000;text-align: center;}
+.te h5,h6:hover{color: #337AB7;}
+.te p{color: #DC4D44;font-weight: bold;text-align: center;}
+.remen .lt{margin-right: 20px;margin-top: 10px;}
+.b .ppp{margin-top: 18px;}
+.biankuang{border:1px solid #337AB7;}
+.pp2 {display:none; }
+.pp1{margin-top:24px;}
+.rere h5{color: #424242;}
+.rere h6{color: #B2B2B2;}
+.remen{padding-right: 0;}
+.ff div{float: left;}
+.ff h6,p{text-align: center;}
+
+

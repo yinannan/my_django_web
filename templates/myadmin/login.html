@@ -1,0 +1,31 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>登陆</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static 'myadmin/css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'myadmin/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+		<link href="{% static 'myadmin/css/site.css' %}" rel="stylesheet">
+	</head>
+	<body>
+		<div id="login-page" class="container">
+			<h1>登陆</h1>
+			<form id="login-form" class="well" action="{% url 'adminDologin' %}" method="post">
+			{% csrf_token %}
+				<input type="text" class="span2" placeholder="请输入账号" name="usersname" /><br/>
+				<input type="password" class="span2" placeholder="请输入密码" name="password" /><br/>
+				<input type="text" placeholder="验证码" name="code" class="span2"style="width: 45px;"><img src="{% url 'yanzhengma' %}" onclick="this.src='{% url 'yanzhengma' %}?sn='+Math.random()" alt="" style="margin-left: 25px;margin-top: -10px;">
+				<label class="checkbox"> <input type="checkbox" /> 记住我 </label>
+				<button type="submit" class="btn btn-primary">登陆</button>
+				<button type="submit" class="btn">忘记密码</button>
+			</form>	
+			<hr>
+			<span style="color:red;">{{ info }}</span>
+		</div>
+		<script src="{% static 'myadmin/js/jquery.min.js' %}"></script>
+		<script src="{% static 'myadmin/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'myadmin/js/site.js' %}"></script>
+	</body>
+</html>

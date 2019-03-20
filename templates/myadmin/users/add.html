@@ -1,0 +1,87 @@
+{% extends "myadmin/base.html" %}
+{% load static from staticfiles %}
+
+{% block dojs %}
+	<script src="{% static 'myadmin/js/add.js' %}"></script>
+{% endblock %}
+
+{% block indexbody %}
+	<h3>
+		会员信息添加
+	</h3>
+	<form action="{% url 'adminInsert' %}" id="edit-profile" class="form-horizontal" method="post">
+	{% csrf_token %}
+		<fieldset>
+			<legend>输入会员信息</legend>
+			<div class="control-group">
+				<label class="control-label" for="input01">账号</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="" name="username" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">真实姓名</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value=" " name="name" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">密码</label>
+				<div class="controls">
+					<input type="password" class="input-xlarge" id="input01" value="" name="password" />
+				</div>
+			</div>
+			<div class="control-group" >
+			<div>
+				<label class="control-label" for="input01" >性别</label>
+				<div class="controls">
+					男&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="0" name="sex" 
+					 />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					女&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="1" name="sex" 
+					/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</div></div>
+			</div>	
+			<div class="control-group">
+				<label class="control-label" for="input01">地址</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="" name="adress" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">邮编</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="" name="code" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">电话</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value=""  name="phone" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">Email</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value="" name="email" />&nbsp;&nbsp;&nbsp;   @163.com
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">状态</label>
+				<div class="controls">
+					&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="1" name="state" />&nbsp;&nbsp;&nbsp;启用
+					&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="2" name="state" />&nbsp;&nbsp;&nbsp;禁用
+					&nbsp;&nbsp;&nbsp;<input type="radio" class="input-xlarge" id="input01" value="0" name="state" />&nbsp;&nbsp;&nbsp;后台管理员
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="input01">注册时间</label>
+				<div class="controls">
+					<input type="text" class="input-xlarge" id="input01" value=""  name="addtime" />
+				</div>
+			</div>		
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary zhu">添加</button><button type="reset" class="btn">重置</button>
+			</div>
+		</fieldset>
+	</form>
+{% endblock%}

@@ -1,0 +1,77 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+
+{%endblock%}
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+	<br>
+	<div class="container" >
+		<h2 style="color: #696B69;" class="glyphicon glyphicon-user"><strong>个人中心</strong></h2><hr>
+		<div class="row" s>
+			<div class="panel panel-default">
+			    <div class="panel-heading gouwu" style="padding-left: 70px;">
+			    	<h3>历史订单详情</h3>
+			    </div>
+			  	<div class="panel-body row tupian" tyle="text-align: center">
+					<div class="row ">
+						<div class="col-md-2 col-xs-4" style="padding-left: 50px;">订单编号</div>
+						<div class="col-md-2 col-xs-2" style="text-align: center">商品编号</div>
+						<div class="col-md-2 col-xs-2" style="text-align: center">商品名称</div>
+						<div class="col-md-2 col-xs-2" style="text-align: center">商品价格</div>
+						<div class="col-md-1 col-xs-2" style="text-align: center">商品数量</div>
+						<div class="col-md-2 col-xs-2" style="text-align: center">商品图片</div>
+						<div class="col-md-1 col-xs-2" style="text-align: center">操作</div>
+					</div><hr>
+					{% for myd in mydetail %}
+					<div class="row " style="margin-top: 20px;text-align: center;padding-bottom: 0;">
+						<div class="col-md-2 col-xs-2 caozuo" style="padding-left: 0;">
+							<span class="manage-address"><input type="text" name="adress" value="{{myd.orderid}}" style="border: none;text-align: center;"/></span>
+						</div>
+						<div class="col-md-2 col-xs-6 caozuo" style="text-align: center;">
+							 <span class="manage-address"><input type="text" readonly  value="{{myd.goodsid}}" style="border: none;text-align:center;"/></span>
+						</div>
+						<div class="col-md-2 col-xs-6 caozuo" style="text-align: center;">
+							 <span class="manage-address"><input type="text" readonly  value="{{myd.name}}" style="border: none;text-align:center;"/></span>
+						</div>
+						<div class="col-md-2 col-xs-2 caozuo" >
+							<span class="manage-address"><input type="text" readonly value="{{ myd.price}}" style="border: none;text-align: center;"/></span>
+						</div>
+						<div class="col-md-1 col-xs-2 caozuo" >
+							<span class="manage-address"><input type="text" readonly value="{{ myd.num}}" style="border: none;text-align: center;width: 30px;"/></span>
+						</div>
+						<div class="col-md-2 col-xs-2 caozuo" >
+							<img src="/static/goods/s_{{ myd.picname }}" alt="" style="margin-left: 50px;margin-top: 0;">
+						</div>
+						<div class="col-md-1 col-xs-2 caozuo" style="margin-top: 10px;">
+							<a href="{% url 'webmyselfshouhuo' myd.orderid %}"><button class="btn btn-success btn-sm">收货</button></a>
+						</div>
+					</div>
+					{% endfor %}	
+			  	</div>
+			</div>
+		</div>
+	  	<!-- 尾部 -->
+	  	<div class="panel-footer">
+			<div class="row "><br>
+				<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" >
+					<a href="{% url 'webmyself' %}">
+					<button  type="submit" class="btn btn-info" style="margin-top:-7px;margin-left:50px">返回个人中心</button></a>
+				</div>
+			</div>
+		<!-- end尾部 -->
+	  	</div>
+	</div><br><br>
+
+{%endblock%}
+
+
+
+	
+

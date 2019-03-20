@@ -1,0 +1,122 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czlist.css' %}">
+{%endblock%}
+
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+	<br><br>
+	<div class="container">
+		<form action="{% url 'ordersinsert' %}" method="post" >
+			<div class="row">
+				<div class="panel panel-default" >
+				    <div class="panel-heading gouwu" style="padding-left: 70px;">
+				    <span><h4>订单确认页&nbsp;&nbsp;&nbsp;&nbsp;收货地址</h4></span>	
+				    </div>
+				    <!-- 购物内容 -->
+					{% csrf_token %}
+				  	<div class="panel-body" style="text-align: center">
+						<div class="col-xs-12" >
+							<div class="row xinxi">
+								<div class="col-md-2 col-xs-4" style="text-align: center">收件人</div>
+								<div class="col-md-3 col-xs-2" style="text-align: center">地址</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">邮编</div>
+								<div class="col-md-3 col-xs-2" style="text-align: center">电话</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">总金额</div>
+							</div><hr>
+							<!-- 名字 -->
+							<div class="col-md-2 col-xs-2 jiage zhanshi1 gg xiaoji" style="padding: 0;">
+								<input type="text" readonly name="linkman" value="{{request.POST.linkman}} " style="border: none;text-align: center;"/>
+							</div>
+							<!-- 地址 -->
+							<div class="col-md-3 col-xs-2 jiage zhanshi1 gg xiaoji" style="padding: 0">
+								<input type="text" readonly name="adress" value="{{request.POST.adress}}" style="border: none;text-align: center;"/>
+							</div>
+							<!-- 邮编 -->
+							<div class="col-md-2 col-xs-6 jiajian  zhanshi1 f1">
+								<input type="text" readonly name="code" value="{{request.POST.code}}" style="border: none;text-align: center;"/>
+							</div>
+							<!-- 电话 -->
+							<div class="col-md-3 col-xs-2  zhanshi1 jiage xiaoji gg" >
+								<input type="text" readonly name="phone" value="{{request.POST.phone}}" style="border: none;text-align: center;"/>
+							</div>
+							<!-- 小计 -->
+							<div class="col-md-2 col-xs-2 zhanshi1 caozuo ">
+								￥:{{request.session.total}}元
+							</div>
+						</div>
+				  	</div>
+				</div>
+			</div>
+			<br><br><br>
+			<div class="row" >
+				<div class="panel panel-default" >
+				    <div class="panel-heading gouwu" style="padding-left: 70px;">
+				    	<h4>购买商品</h4>
+				    </div>
+				  	<div class="panel-body row tupian " style="text-align: center">
+						<div class="col-xs-12">
+							<!-- 商品信息行 -->
+							<div class="row  zhanshi1">
+								<div class="col-md-1 col-xs-4" style="text-align: center">id</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">名称</div>
+								<div class="col-md-3 col-xs-2" style="text-align: center">图片</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">单价</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">数量</div>
+								<div class="col-md-2 col-xs-2" style="text-align: center">小计</div>
+							</div><hr>
+							{% for shop in request.session.orderlist.values %}
+							<div class="row zhanshi1" style="margin-top: 20px;">
+								<!-- id-->
+								<div class="col-md-1 col-xs-2 jiage gg xiaoji" >
+									<span class="manage-address"><input type="text" readonly value="{{shop.id}}" style="border: none;text-align: center;margin-left: -7px;width: 70px;"/></span>
+								</div>
+								<!-- 名称 -->
+								<div class="col-md-2 col-xs-2 jiage gg xiaoji" >
+									 <span class="manage-address"><input type="text" readonly  value="{{shop.goods}}" style="border: none;text-align: center;"/></span>
+								</div>
+								<!-- 图片 -->
+								<div class="col-md-3 col-xs-6 jiajian f1">
+									<span class="manage-address"><img src="/static/goods/s_{{ shop.picname }}" ></span>
+								</div>
+								<!-- 单价 -->
+								<div class="col-md-2 col-xs-2 jiage xiaoji gg" >
+									<span class="manage-address"><input type="text" readonly value="{{ shop.price}}" style="border: none;text-align: center;"/></span>
+								</div>
+								<!-- 数量 -->
+								<div class="col-md-2 col-xs-2 jiage xiaoji gg" >
+									<span class="manage-address"><input type="text" readonly value="{{ shop.m}}" style="border: none;text-align: center;"/></span>
+								</div>
+								<!-- 小计 -->
+								<div class="col-md-2 col-xs-2  caozuo ">
+									<span class="manage-address"><input type="text" readonly value="{% widthratio  shop.price 1 shop.m %}" style="border: none;text-align: center;"/></span>
+								</div>
+							</div><br><br>
+							{%  endfor %}	
+				  		</div>
+					</div>
+				</div>
+			</div>
+		  	<!-- 结算尾部 -->
+			<div class=" panel-footer row "><br>
+				<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" >
+					<a href="{% url 'ordersinsert' %}">
+					<button  type="submit" class="btn btn-primary " style="margin-top:-7px;margin-left: 950px">确认订单</button></a>
+				</div>
+			</div>
+			<!-- end结算尾部 -->
+		</form>
+	</div>
+	<br class="hidden-xs"><br class="hidden-xs">
+{%endblock%}
+
+
+
+	
+

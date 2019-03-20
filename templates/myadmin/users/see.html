@@ -1,0 +1,72 @@
+{% extends "myadmin/base.html" %}
+{ % load static from staticfiles %}
+
+{% block css %}
+{% endblock %}
+
+{% block indexbody %}
+	<br><h2>
+		会员信息浏览
+	</h2><br>
+	<table class="table table-bordered table-striped" >
+		<thead>
+			<tr>
+				<th style="text-align:center;">账号</th>
+				<th style="text-align:center;">姓名</th>
+				<th style="text-align:center;">性别</th>
+				<th style="text-align:center;">地址</th>
+				<th style="text-align:center;">邮编</th>
+				<th style="text-align:center;">电话</th>
+				<th style="text-align:center;">Email</th>
+				<th style="text-align:center;">状态</th>
+				<th style="text-align:center;">注册时间</th>
+				<th style="text-align:center;">操作</th>
+				<th style="text-align:center;">密码操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for users in userslist %}
+			<tr>
+				<td style="text-align:center" style="text-align:center">{{ users.username }}</td>
+				<td style="text-align:center" style="text-align:center">{{ users.name }}</td>
+				<td style="text-align:center" style="text-align:center"> 
+				{% if users.sex == 0 %}
+				男
+				{% else %}
+				女
+				{% endif %}
+				 </td>
+				<td style="text-align:center" style="text-align:center">{{ users.adress }}</td>
+				<td style="text-align:center" style="text-align:center">{{ users.code }}</td>
+				<td style="text-align:center" style="text-align:center">{{ users.phone }}</td>
+				<td style="text-align:center" style="text-align:center">{{ users.email }}</td>
+				<td style="text-align:center" style="text-align:center"> 
+				{% if users.state == 0 %}
+				管理员
+				{% elif users.state == 1 %}
+				启用
+				{% else %}
+				禁用
+				{% endif %}	
+				</td>
+				<td style="text-align:center">{{ users.addtime }}</td>
+				<td>
+					<a href="{% url 'adminEdit' users.id %}">编辑</a>
+					<a href="{% url 'adminDel' users.id %}">删除</a>
+				</td>
+				<td><a href="{% url 'admineditpass' users.id %}">重置</a></td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<div class="pagination">		
+		<ul>
+		{% for pindex in plist %}
+		    <li><a href="{% url 'adminSee' pindex %}">{{ pindex }}</a>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+		{% endfor %}
+		</ul>
+	</div>	
+{% endblock %}
+
+
+

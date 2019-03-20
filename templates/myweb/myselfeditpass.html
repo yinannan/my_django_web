@@ -1,0 +1,54 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+
+{%endblock%}
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+<br><br>
+<div class="container" >
+	<form action="{% url 'webmyselfdoeditpass' %}" method="post" >
+	 {% csrf_token %}
+		<div class="row" >
+			<div class="panel panel-default">
+			    <div class="panel-heading gouwu" style="padding-left: 70px;">
+			    	<h4>修改密码</h4>
+			    </div><hr>
+				<div class="control-group">
+					<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">账号</span>
+					  	<input type="hidden" class="input-xlarge" id="input01" value="{{ myselfusers.id }}" name="id" />
+					  	<input type="text" class="form-control" value="{{ myselfusers.username }}" aria-describedby="sizing-addon1" readonly name="username">
+					</div><br>
+				</div>
+				<div class="control-group">
+					<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">密码</span>
+					  	<input type="password" class="form-control" value="" aria-describedby="sizing-addon1" name="password">
+					</div><br>
+				</div><hr>
+			</div>
+		</div>
+  		<!-- 修改尾部 -->
+	  	<div class="panel-footer">
+			<div class="row "><br>
+				<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" >
+					<button  type="submit" class="btn btn-primary btn-lg" style="margin-top:-7px;margin-left:850px">提交修改</button>
+				</div>
+			</div>
+		<!-- end修改尾部 -->
+	  	</div><br><br><br><br>
+	</form>
+</div>
+{%endblock%}
+
+
+
+	
+

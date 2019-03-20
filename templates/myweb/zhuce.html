@@ -1,0 +1,155 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+{%endblock%}
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+<br><br>
+<div class="container" >
+	<h1 style="color: #696B69;" class="glyphicon glyphicon-pencil"><strong>输入注册信息</strong></h1><hr>
+	<form action="{% url 'webdozhuce' %}" method="post" >
+	 {% csrf_token %}
+		<div class=" panel-default" style=""><br>
+		    <div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		      	<span class="input-group-addon" id="sizing-addon1">用户名</span>
+		      	<input type="text" class="form-control" placeholder="请输入6-10位英文用户名" aria-describedby="sizing-addon1" name="username">
+		    </div><hr>
+		    <div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		      	<span class="input-group-addon" id="sizing-addon1">姓名</span>
+		      	<input type="text" class="form-control" placeholder="请输入6-10位登陆英文用户名" aria-describedby="sizing-addon1" name="name">
+		    </div><hr>
+		   	<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		     	<span class="input-group-addon" id="sizing-addon1">密码</span>
+		     	<input type="password" class="form-control" placeholder="请输入6位密码" aria-describedby="sizing-addon1" name="password">
+		   	</div><hr>
+		   	<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		     	<span class="input-group-addon" id="sizing-addon1" style="border:1px solid #CCCCCC;"> 性别</span>
+		        <input type="radio" name="sex" value="0" style="margin-left: 50px;margin-top: 10px;" /> 男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		        <input type="radio" name="sex" value="1" /> 女
+		   	</div><hr>
+		  	<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		  	  	<span class="input-group-addon" id="sizing-addon1">地址</span>
+		  	  	<input type="text" class="form-control" placeholder="请输入地址" aria-describedby="sizing-addon1" name="adress">
+		  	</div><hr>
+			<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+			  	<span class="input-group-addon" id="sizing-addon1">邮编</span>
+			  	<input type="text" class="form-control" placeholder="请输入6位邮编" aria-describedby="sizing-addon1" name="code">
+			</div><hr>
+		  	<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+		  	  	<span class="input-group-addon" id="sizing-addon1">电话</span>
+		  	  	<input type="text" class="form-control" placeholder="请输入11位电话" aria-describedby="sizing-addon1" name="phone">
+		  	</div><hr>
+			<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+			  	<span class="input-group-addon" id="sizing-addon1">邮箱</span>
+			  	<input type="text" class="form-control" placeholder="请输入正确邮箱格式" aria-describedby="sizing-addon1" name="email">
+			</div>
+		  	<div class="panel-body" style="text-align: center">
+				<div class="row" ><br>
+					<button  type="submit" class="btn btn-primary btn-lg" style="margin-top:-7px;margin-left:750px;margin-bottom: 0" id="zhu">提交注册</button>
+					<button  type="reset" class="btn btn-primary btn-lg " style="margin-top:-7px;margin-left:750px;margin-bottom: 0">重置信息</button>
+				</div>
+			</div>
+		</div><br><br><br>
+	</form>
+</div>
+
+<script>
+	// 表单验证
+	var unames = false;
+	var names = false;
+	var pass = false;
+	var codes = false;
+	var phones = false;
+	var emails = false;
+
+	$('input[name=username]').blur(function(){ 
+	var valu = $(this).val();
+	var reg = /^\w{6,10}$/;
+	if(reg.test(valu)){ 
+		$(this).css('border','1px solid green');  
+		unames = true;  
+	}else{
+		$(this).css('border','1px solid red');
+		unames = false; }
+	})
+
+	$('input[name=name]').blur(function(){ 
+	var valu = $(this).val();
+	var reg = /^\w{6,10}$/;
+	if(reg.test(valu)){ 
+		$(this).css('border','1px solid green');  
+		names = true;  
+	}else{
+		$(this).css('border','1px solid red');
+		names = false; }
+	})
+
+	$('input[name=password]').blur(function(){ 
+		var valp = $(this).val();
+		var reg = /^\d{6}$/;
+		if(reg.test(valp)){ 
+			$(this).css('border','1px solid green');  
+			pass = true;  
+		}else{
+			$(this).css('border','1px solid red');
+			pass = false; 
+		}
+	})
+
+	$('input[name=code]').blur(function(){ 
+		var valp = $(this).val();
+		var reg = /^\d{6}$/;
+		if(reg.test(valp)){ 
+			$(this).css('border','1px solid green');  
+			codes = true;  
+		}else{
+			$(this).css('border','1px solid red');
+			codes = false; 
+		}
+	})
+
+	$('input[name=email]').blur(function(){ 
+		var valp = $(this).val();
+		var reg = /^\w{2,10}@\w{2,10}\.(cn|com)$/;
+		if(reg.test(valp)){ 
+			$(this).css('border','1px solid green');  
+			emails = true;  
+		}else{
+			$(this).css('border','1px solid red');
+			emails = false; 
+		}
+	})
+
+	$('input[name=phone]').blur(function(){ 
+		var valp = $(this).val();
+		var reg = /^\w{11}$/;
+		if(reg.test(valp)){ 
+			$(this).css('border','1px solid green');  
+			phones = true;  
+		}else{
+			$(this).css('border','1px solid red');
+			phones = false; 
+		}
+	})
+
+	$('#zhu').click(function(){
+		$('input').trigger('blur');
+		if(pass && names && unames && phones && codes && emails == true){
+			return true;
+		}
+		return false;
+	})
+</script>
+{%endblock%}
+
+
+
+
+	
+

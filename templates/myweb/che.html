@@ -1,0 +1,133 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+{%endblock%}
+
+{%block js%}
+	<script type="text/javascript" src="{% static 'myweb/js/czche.js' %}"></script>
+{%endblock%}
+
+{%block neirong%}
+	<br><br>
+	<div class="container">
+		<div class="row">
+			<div class="panel panel-default">
+			    <div class="panel-heading gouwu" style="padding-left: 70px;">
+			    	<h4>购物清单</h4>
+			    </div>
+			    <!-- 购物内容 -->
+			  	<div class="panel-body">
+					<div class="col-xs-12">
+						<!-- 商品信息行 -->
+						<div class="row xinxi">
+							<div class="col-md-7 col-xs-4" style="padding-left: 50px;">商品信息</div>
+							<div class="col-md-1 col-xs-2" style="text-align: center">单价</div>
+							<div class="col-md-2 col-xs-2" style="text-align: center">数量</div>
+							<div class="col-md-1 col-xs-2" style="text-align: center">小计</div>
+							<div class="col-md-1 col-xs-2" style="text-align: center">操作</div>
+						</div>
+					
+						<div class="row zhanshi1">
+							{% for che in request.session.buy.values %}
+							<input type="hidden" name="{{ che.id }}">
+								<div class="col-md-7 col-xs-12 tupian" >
+									 <div><input type="checkbox" class="mz-checkbox checkboxw mayi" id="box" gid="{{ che.id }}"></div>
+									<div class="quan " id="a1"></div>
+									<a href="{% url 'webdetail' che.id %}"><img src="/static/goods/s_{{ che.picname }}"  class="img-thumbnail" width="81px"></a>
+									<div class=" jieshao bb" >
+										<a href="{% url 'webdetail' che.id %}" style="margin-left:35px; color: #666666;font-size: 19px;line-hight: 20px;text-align: center;"><h3>{{ che.goods }}</h3></a>
+									</div>
+								</div>
+								<!-- 单价 -->
+								<div class="col-md-1 col-xs-2 jiage gg xiaoji" >
+									¥<span>{{ che.price }}</span>.00
+								</div>
+								<!-- 加减 -->
+								<div class="col-md-2 col-xs-6 jiajian f1">
+									<a href="{% url 'webdetail' che.id %}"><div class="yi1 ee num" style="margin-left: 65px;">{{ che.m }}</div></a>
+								</div>
+								<!-- 小计 -->
+								<div class="col-md-1 col-xs-2 jiage xiaoji gg youhui">
+									￥<span class="total"  price="{% widthratio che.price 1 che.m %}">{% widthratio  che.price 1 che.m %}</span>.00
+								</div>
+								<!-- 操作 -->
+								<div class="col-md-1 col-xs-2  caozuo ">
+									<a href="{% url 'webdelche' che.id %}"><div class="caozuotu li ii"><button>×</button></div></a>
+								</div>
+							{% endfor %}
+						</div>
+			  		</div>
+			  	</div>
+			  	<!-- 结算尾部 -->
+			  	<div class="panel-footer">
+					<div class="row "><br>
+						<div class="col-md-4 col-xs-12 col-sm-5 quanx wu" >
+							<div style="margin-left: 40px">
+								<input type="checkbox" class=" checks cart-col-selec">
+								<span class="mz-checkbox" >全选</span>
+							</div>
+						</div>
+						<div class="col-md-2 col-xs-6 col-sm-3 zg" style="margin-left: 50px;">
+							<h4>已选择<span class="er cc" id="yixuan" maxlength="2" >0</span>件产品</h4>
+						</div>
+						<div class="col-md-2 col-xs-6  col-sm-3 jine">
+							<h4>应付:<span id="jine" class="san totalPrice" style="margin-left:20px;">0</span>.00</h4>
+						</div>
+						<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" style="margin-left:80px;">
+							<button onclick="window.location='{% url 'orders' %}?gids='+totalmoney().join(',')" type="button" class="btn btn-primary " style="margin-top:-2px">现在结算</button>
+						</div>
+						<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" style="margin-left: -10px;margin-top: -10px">
+							<a href="{% url 'webclearche' %}"><button class="btn btn-primary  btn-danger">清空</button></a>
+						</div>
+						<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" style="margin-left:-37px; margin-top: -10px">
+							<a href="{% url 'weblist' %}"><button class="btn btn-primary ">返回</button></a>									
+						</div>
+					</div>
+				<!-- end结算尾部 -->
+			  	</div>
+			</div>
+		</div>
+	</div>
+	<!--end -->
+	</div><br class="hidden-xs"><br class="hidden-xs">
+		
+<script>
+	$(function(){
+	    $(".checkboxw").click(function(){
+	            totalmoney()
+	    });
+	    $(".checks").click(function(){
+	          if($(this).is(":checked")){
+	            $(".checkboxw").prop("checked",true);
+	          }else{
+	            $(".checkboxw").prop("checked",false);
+	          }
+	          totalmoney()
+	    });
+    })
+
+    function totalmoney(){
+        var total = 0;
+        var ss = 0;
+        var h = $(".total")
+        var ids = [];
+        var che = $('.checkboxw');
+        for(var i=0;i<che.length;i++){
+          	if(che.eq(i).is(':checked')){
+                var s = h.eq(i).html()              
+                var tt = $(".num").eq(i).html();             
+                total = parseInt(total) + parseInt(s);
+                ss = parseInt(ss) + parseInt(tt); 
+                ids.push($(che[i]).attr('gid'));
+          }
+        }
+        $(".totalPrice").html(total);
+        $(".cc").html(ss);
+        return ids;
+    }
+</script>
+{%endblock%}
+	

@@ -1,0 +1,79 @@
+{% extends "myweb/base.html" %}
+{% load static from staticfiles %}
+
+{%block link%}
+	<link rel="stylesheet" href="{% static 'myweb/css/czche.css' %}">
+
+{%endblock%}
+
+{%block js%}
+{%endblock%}
+
+
+{%block neirong%}
+<br><br>
+<div class="container" >
+	<form action="{% url 'webmyselfdoedit' %}" method="post" >
+	 {% csrf_token %}
+		<div class="row" >
+			<div class="panel panel-default">
+			    <div class="panel-heading gouwu" style="padding-left: 70px;">
+			    	<h4>编辑个人信息</h4>
+			    </div><hr>
+				<div class="control-group">
+					<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">账号</span>
+					  	<input type="hidden" class="input-xlarge" id="input01" value="{{ myuser.id }}" name="id" />
+					  	<input type="text" class="form-control" value="{{ myuser.username }}" aria-describedby="sizing-addon1" readonly name="username">
+					</div><br>
+				</div>
+				<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+			     	<span class="input-group-addon" id="sizing-addon1" style="border:1px solid #CCCCCC;"> 性别</span>
+			        <input type="radio" name="sex" value="0" 
+					{% if myuser.sex == 0 %}
+					checked
+					{% endif %} 
+			         style="margin-left: 50px;margin-top: 10px;" /> 男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			        <input type="radio" name="sex" value="1"
+					{% if myuser.sex == 1 %}
+					checked
+					{% endif %} 
+			          /> 女
+				</div><br>
+				<div class="control-group">
+					<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">地址</span>
+					  	<input type="text" class="form-control" value="{{ myuser.adress }}" aria-describedby="sizing-addon1" name="adress">
+					</div><br>
+				</div>
+				<div class="control-group">
+					<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">邮编</span>
+					  	<input type="text" class="form-control" value="{{ myuser.code }}" aria-describedby="sizing-addon1" name="code">
+					</div><br>
+				</div>
+				<div class="control-group">=
+				<div class="input-group input-group-lg" style="width: 60%;margin-left: 130px;">
+					  	<span class="input-group-addon" id="sizing-addon1">电话</span>
+					  	<input type="text" class="form-control" value="{{ myuser.phone }}" aria-describedby="sizing-addon1" name="phone">
+					</div><br>
+				</div>
+			</div>
+		</div>
+  		<!-- 修改尾部 -->
+	  	<div class="panel-footer">
+			<div class="row "><br>
+				<div class="col-md-1 col-xs-12 col-sm-12 jiesuan" >
+					<button  type="submit" class="btn btn-primary btn-lg" style="margin-top:-7px;margin-left:850px">提交修改</button>
+				</div>
+			</div>
+		<!-- end修改尾部 -->
+	  	</div>
+	</form>
+</div><br><br><br>
+{%endblock%}
+
+
+
+	
+
