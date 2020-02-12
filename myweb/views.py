@@ -8,7 +8,7 @@ import time
 
 #---------------------------------登陆-----------------------------
 
-#登陆
+#登陆:判断状态, 如果已经登录, 跳转到个人中心, 如果没有登录跳转到登录页面
 def weblogin(request):
 	if 'user' in request.session:
 		return redirect(reverse('webmyself'))

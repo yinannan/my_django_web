@@ -24,12 +24,13 @@ SECRET_KEY = '@b_hi0afhfyw452zzp(cguj#i@i-(3o%ho84(j72#11d(lup6g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['192.168.2.134']
+# 允许访问的域名
+# ALLOWED_HOSTS = ['192.168.2.134']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
+# 注册app, 使得创建的应用程序生效
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,7 +77,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# 配置使用的mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -110,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
+# 中英文
 LANGUAGE_CODE = 'en-us'
-
+# 时区
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -124,7 +125,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+# 设置静态资源的路径, 不然找不到
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static'),

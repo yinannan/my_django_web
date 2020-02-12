@@ -13,6 +13,7 @@ class Users(models.Model):
     state = models.IntegerField(default=1)
     addtime = models.IntegerField(max_length=11)
 
+    # 类种类, 设置表名
     class Meta:
         db_table='myweb_users'
     def userdef(self):
